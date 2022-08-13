@@ -63,6 +63,11 @@ function App() {
     dispatch(start());
   }
 
+  useEffect(() => {
+    console.log('App rendered');
+    startConversation();
+  }, []);
+
   return (
     <div>
       <button onClick={() => startConversation()} style={{ zIndex: 1000, position: 'fixed' }}>Start</button>

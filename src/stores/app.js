@@ -75,6 +75,10 @@ export const appSlice = createSlice({
 export const { setStatus, setRobotDelay, setQuestions, setCurrentQuestion } = appSlice.actions;
 
 export const start = () => (dispatch, getState) => {
+  if (getState().app.status !== 'waiting') {
+    return;
+  }
+
   dispatch(setStatus('started'));
   dispatch(setCurrentQuestion(-1));
   
