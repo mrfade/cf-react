@@ -35,23 +35,10 @@ function App() {
       name: 'email',
       placeholder: 'Enter your email',
       required: true,
-      validation: 'email'
-    },
-    {
-      type: "robot-message",
-      label: "Great!",
-    },
-    {
-      type: "robot-message",
-      label: "One more question",
-    },
-    {
-      type: "text",
-      label: "What is your email?",
-      name: "email",
-      placeholder: "Enter your email",
-      required: true,
-      validation:"email",
+      validation: [
+        'email',
+        'required',
+      ]
     },
     {
       type: "multi",
@@ -62,9 +49,9 @@ function App() {
     },
     {
       type: "checkbox",
-      label: "What is your name?",
-      name: "name",
-      placeholder: "Enter your name",
+      label: "Select one or more options",
+      name: "checkbox",
+      placeholder: "Select an option or type your own",
       required: true,
     },
   ];
