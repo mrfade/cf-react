@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const CheckBox = (props) => {
   const [list, setList] = useState([]);
-  const { handleInputChange, name, value, onChange } = props;
+  const { handleInputChange, name, value, onChange, handleCheckboxChange } =
+    props;
+  useEffect(() => {
+    handleCheckboxChange(list.join(","));
+  }, [list]);
   const handleClick = (e) => {
     if (list.includes(e)) {
       setList(list.filter((item) => item !== e));
