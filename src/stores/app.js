@@ -192,10 +192,11 @@ export const validateAndSubmit = () => (dispatch, getState) => {
   if (!valid) {
     dispatch(setErrorMessage(errorMessage));
     dispatch(setValue(''));
-
+    dispatch(setDisabled(true));
     setTimeout(() => {
       dispatch(setErrorMessage(''));
       dispatch(setValue(value));
+      dispatch(setDisabled(false));
     }, 2000);
 
     return;
