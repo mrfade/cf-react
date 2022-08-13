@@ -22,7 +22,7 @@ export default function CfInput() {
 
   useEffect(() => {
     inputRef.current.focus();
-  }, [currentQuestion]);
+  }, [currentQuestion,errorMessage]);
 
   return (
     <div className={classNames('cf-input animate-in', {
@@ -30,7 +30,7 @@ export default function CfInput() {
       'disabled': errorMessage.length > 0
     })}>
       <CfInfo />
-      {type === "multi" ? <CfInputControlElements /> : null}
+      {!disabled && type === "multi" ? <CfInputControlElements /> : null}
       <div className="inputWrapper">
         <input
           required={required}

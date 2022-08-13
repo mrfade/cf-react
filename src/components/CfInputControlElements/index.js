@@ -30,24 +30,28 @@ export default function CfInputControlElements() {
           transform: "translateX(0px)",
         }}
       >
-        <div className="cf-radio-button cf-button animate-in" tabindex="2">
-          <div
-            onClick={(e) => {
-              e.preventDefault();
-              handleInputChange("Yes");
-            }}
-          >
+        <div
+          className="cf-radio-button cf-button animate-in "
+          onClick={(e) => {
+            e.preventDefault();
+            handleInputChange("Yes");
+          }}
+          tabindex="2"
+        >
+          <div>
             <div className="cf-radio"></div>
             <span>Yes</span>
           </div>
         </div>
-        <div className="cf-radio-button cf-button animate-in" tabindex="3">
-          <div
-            onClick={(e) => {
-              e.preventDefault();
-              handleInputChange("No");
-            }}
-          >
+        <div
+          className="cf-radio-button cf-button animate-in"
+          onClick={(e) => {
+            e.preventDefault();
+            handleInputChange("Yes");
+          }}
+          tabindex="3"
+        >
+          <div>
             <div className="cf-radio"></div>
             <span>No</span>
           </div>
