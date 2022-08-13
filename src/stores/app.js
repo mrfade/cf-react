@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { setRobotThinking, addMessage } from './chat';
-import { setType, setValue, setName, setDisabled, setRequired, setPlaceholder } from './input';
+import { setType, setValue, setName, setDisabled, setRequired, setPlaceholder, setValidation, setErrorMessage } from './input';
 import { addAnswer, getFormData } from './answer';
 import { email, maxLength, minLength, required } from '../validations';
 
@@ -33,6 +33,36 @@ export const appSlice = createSlice({
 
     setQuestions: (state, action) => {
       // const questions = [];
+
+      // action.payload.forEach((question) => {
+      //   const _question = {
+      //     type: question.type,
+      //     label: question.label,
+      //     name: question.name,
+      //     placeholder: question.placeholder,
+      //     required: question.required,
+      //     validation: null,
+      //     value: question.value,
+      //   };
+
+      //   if (Array.isArray(question.validation)) {
+      //     const validations = [];
+      //     question.validation.forEach((validation) => {
+      //       if (VALIDATIONS[validation]) {
+      //         validations.push(VALIDATIONS[validation]);
+      //       }
+      //     });
+      //     _question.validation = validations;
+      //   } else if (VALIDATIONS[question.validation]) {
+      //     _question.validation = VALIDATIONS[question.validation];
+      //   } else if (typeof question.validation === 'object' && typeof question.validation.handler === 'function') {
+      //     _question.validation = question.validation;
+      //   }
+
+      //   questions.push(_question);
+      // });
+
+      // state.questions = questions;
       state.questions = action.payload;
     },
 
@@ -82,6 +112,7 @@ export const nextQuestion = () => (dispatch, getState) => {
   dispatch(setDisabled(false));
   dispatch(setRequired(question.required ?? false));
   dispatch(setPlaceholder(question.placeholder ?? ''));
+  dispatch(setValidation(question.validation ?? null));
 }
 
 export const finished = () => (dispatch, getState) => {
@@ -101,15 +132,42 @@ export const finished = () => (dispatch, getState) => {
 
 export const validateAndSubmit = () => (dispatch, getState) => {
   const { robotDelay } = getState().app;
-  const { value, name } = getState().input;
+  const { value, name, validation } = getState().input;
 
-  let valid;
+  let valid = true;
+  let errorMessage = '';
 
   const filteredValue = value.trim();
 
-  valid = filteredValue.length > 0;
+  // run validations
+  if (validation) {
+    if (Array.isArray(validation)) {
+      validation.forEach((_validation) => {
+        if (VALIDATIONS[_validation] && !VALIDATIONS[_validation].handler(filteredValue)) {
+          valid = false;
+          errorMessage = VALIDATIONS[_validation].errorMessage;
+          return;
+        }
+      });
+    } else if (VALIDATIONS[validation]) {
+      if (!VALIDATIONS[validation].handler(filteredValue)) {
+        valid = false;
+        errorMessage = VALIDATIONS[validation].errorMessage;
+      }
+    }
+  }
 
-  // TODO: validate input
+  if (!valid) {
+    dispatch(setErrorMessage(errorMessage));
+    dispatch(setValue(''));
+
+    setTimeout(() => {
+      dispatch(setErrorMessage(''));
+      dispatch(setValue(value));
+    }, 2000);
+
+    return;
+  }
 
   if (valid) {
     dispatch(setValue(''));
@@ -141,8 +199,6 @@ export const validateAndSubmit = () => (dispatch, getState) => {
       nextQuestion()(dispatch, getState);
     }, robotDelay * 2);
   }
-
-
 };
 
 export default appSlice.reducer;

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import classNames from "classnames";
 import { setValue } from "../../stores/input";
 
 import CfInfo from "../CfInfo";
@@ -9,7 +10,7 @@ import CfSubmitButton from "../CfSubmitButton";
 export default function CfInput() {
   const inputRef = useRef(null);
 
-  const { value, disabled, required, placeholder, type } = useSelector(
+  const { value, disabled, required, placeholder, type, errorMessage } = useSelector(
     (state) => state.input
   );
   const { currentQuestion } = useSelector((state) => state.app);
@@ -24,7 +25,10 @@ export default function CfInput() {
   }, [currentQuestion]);
 
   return (
-    <div className="cf-input animate-in">
+    <div className={classNames('cf-input animate-in', {
+      'error': errorMessage.length > 0,
+      'disabled': errorMessage.length > 0
+    })}>
       <CfInfo />
       {type === "multi" ? <CfInputControlElements /> : null}
       <div className="inputWrapper">
@@ -37,9 +41,8 @@ export default function CfInput() {
           type={type}
           tabIndex={1}
           rows="1"
-          placeholder={placeholder ?? "Write your answer"}
+          placeholder={errorMessage.length > 0 ? errorMessage : (placeholder ?? "Write your answer")}
           style={{ height: "60px" }}
-          error
         ></input>
 
         <CfSubmitButton />

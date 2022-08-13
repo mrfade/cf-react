@@ -1,3 +1,6 @@
-export default function required(value) {
-  return value !== undefined || value !== null || value !== ''
-}
+export const required = {
+  errorMessage: 'This field is required',
+  handler: (value) => {
+    return value !== undefined || value !== null || value !== ''
+  }
+}  

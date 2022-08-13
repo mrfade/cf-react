@@ -9,7 +9,9 @@ export const inputSlice = createSlice({
     disabled: true,
     required: false,
     placeholder: '',
-    validation: null, // string or array of strings or function
+    validation: null, // validation type
+
+    errorMessage: '',
   },
   reducers: {
     setType: (state, action) => {
@@ -38,10 +40,14 @@ export const inputSlice = createSlice({
 
     setValidation: (state, action) => {
       state.validation = action.payload;
+    },
+
+    setErrorMessage: (state, action) => {
+      state.errorMessage = action.payload;
     }
   }
 });
 
-export const { setType, setValue, setName, setDisabled, setRequired, setPlaceholder, setValidation } = inputSlice.actions;
+export const { setType, setValue, setName, setDisabled, setRequired, setPlaceholder, setValidation, setErrorMessage } = inputSlice.actions;
 
 export default inputSlice.reducer;

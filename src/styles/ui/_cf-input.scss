@@ -210,7 +210,7 @@ $introDelay: 0.4s;
 		left: 0px;
 	}
 
-	&[error] {
+	&.error {
 		pointer-events: none;
 
 		input,
@@ -451,7 +451,7 @@ $introDelay: 0.4s;
 	// margin-bottom: 10px;
 }
 
-.cf-input[error=""].hide-input {
+.cf-input.error.hide-input {
 	.cf-submit-button {
 		.cf-icon-progress {
 			filter: saturate(0);
