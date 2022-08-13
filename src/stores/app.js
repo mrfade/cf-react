@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { setRobotThinking, addMessage } from './chat';
-import { setType, setValue, setName, setDisabled, setRequired, setPlaceholder, setValidation, setErrorMessage } from './input';
+import { setType, setValue, setName, setDisabled, setRequired, setPlaceholder, setValidation, setErrorMessage, reset } from './input';
 import { addAnswer, getFormData } from './answer';
 import { email, maxLength, minLength, required } from '../validations';
 
@@ -123,6 +123,7 @@ export const finished = () => (dispatch, getState) => {
   
   dispatch(setStatus('finished'));
   dispatch(setCurrentQuestion(-1));
+  dispatch(reset());
 
   dispatch(addMessage({
     owner: 'robot',

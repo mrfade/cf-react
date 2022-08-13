@@ -44,10 +44,21 @@ export const inputSlice = createSlice({
 
     setErrorMessage: (state, action) => {
       state.errorMessage = action.payload;
+    },
+
+    reset: (state) => {
+      state.type = '';
+      state.value = '';
+      state.name = '';
+      state.disabled = true;
+      state.required = false;
+      state.placeholder = '';
+      state.validation = null;
+      state.errorMessage = '';
     }
   }
 });
 
-export const { setType, setValue, setName, setDisabled, setRequired, setPlaceholder, setValidation, setErrorMessage } = inputSlice.actions;
+export const { setType, setValue, setName, setDisabled, setRequired, setPlaceholder, setValidation, setErrorMessage, reset } = inputSlice.actions;
 
 export default inputSlice.reducer;
