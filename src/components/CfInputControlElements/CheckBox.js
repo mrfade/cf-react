@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const CheckBox = (props) => {
   const [list, setList] = useState([]);
-  const { handleInputChange, name, value, onChange } = props;
+  const { handleInputChange, name, value, onChange, handleCheckboxChange } =
+    props;
+  useEffect(() => {
+    handleCheckboxChange(list.join(","));
+  }, [list]);
   const handleClick = (e) => {
     if (list.includes(e)) {
       setList(list.filter((item) => item !== e));
@@ -53,6 +57,21 @@ const CheckBox = (props) => {
           <div>
             <div className="cf-checkbox"></div>
             <span>Javascript</span>
+          </div>
+        </div>
+        <div
+          className={
+            "cf-checkbox-button cf-button animate-in " +
+            (list.includes("React.js") ? " checked" : " unchecked")
+          }
+          onClick={(e) => {
+            handleClick("React.js");
+          }}
+          tabindex="3"
+        >
+          <div>
+            <div className="cf-checkbox"></div>
+            <span>React.js</span>
           </div>
         </div>
       </div>

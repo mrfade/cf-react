@@ -20,6 +20,10 @@ export default function CfInputControlElements(props) {
     }
   };
 
+  const handleCheckboxChange = (value) => {
+    dispatch(setValue(value));
+  };
+
   return (
     <div className="cf-input-control-elements hide-nav-buttons one-row resized animate-in">
       <div className="cf-list-button prev"></div>
@@ -35,6 +39,7 @@ export default function CfInputControlElements(props) {
       ) : null}
       {type === "checkbox" ? (
         <Checkbox
+          handleCheckboxChange={handleCheckboxChange}
           handleInputChange={handleInputChange}
           value={value}
           disabled={disabled}
