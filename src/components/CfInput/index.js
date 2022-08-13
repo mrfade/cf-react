@@ -26,23 +26,24 @@ export default function CfInput() {
   return (
     <div className="cf-input animate-in">
       <CfInfo />
-      {type === "text" ? null : <CfInputControlElements />}
-
+      {type === "multi" ? <CfInputControlElements /> : null}
       <div className="inputWrapper">
-        <textarea
+        <input
+          required={required}
           ref={inputRef}
           value={value}
           onChange={(e) => handleInputChange(e.target.value)}
           disabled={disabled}
-          type="input"
+          type={type}
           tabIndex={1}
           rows="1"
           placeholder={placeholder ?? "Write your answer"}
           style={{ height: "60px" }}
-        ></textarea>
+          error
+        ></input>
 
         <CfSubmitButton />
-      </div>
+       </div>
     </div>
   );
 }

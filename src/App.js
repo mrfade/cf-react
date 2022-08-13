@@ -27,7 +27,7 @@ function App() {
       label: 'One more question',
     },
     {
-      type: 'text',
+      type: 'email',
       label: 'What is your email?',
       name: 'email',
       placeholder: 'Enter your email',
