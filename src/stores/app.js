@@ -114,7 +114,6 @@ export const validateAndSubmit = () => (dispatch, getState) => {
   if (valid) {
     dispatch(setValue(''));
     dispatch(setDisabled(true));
-
     dispatch(addMessage({
       owner: 'user',
       thumb: userImage,
@@ -142,6 +141,8 @@ export const validateAndSubmit = () => (dispatch, getState) => {
       nextQuestion()(dispatch, getState);
     }, robotDelay * 2);
   }
+
+
 };
 
 export default appSlice.reducer;

@@ -3,6 +3,7 @@ import appReducer from './app';
 import inputReducer from './input';
 import answerReducer from './answer';
 import chatReducer from './chat';
+import inputControlReducer from './inputControl';
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     input: inputReducer,
     answer: answerReducer,
     chat: chatReducer,
+    inputControl: inputControlReducer,
   },
 });

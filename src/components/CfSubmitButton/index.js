@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { validateAndSubmit } from '../stores/app';
+import { validateAndSubmit } from '../../stores/app';
 
 export default function CfSubmitButton () {
 

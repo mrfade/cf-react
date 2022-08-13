@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
-import ChatResponse from './ChatResponse';
+import ChatResponse from '../ChatReponse';
 
 export default function ChatList() {
 

@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setValue } from '../stores/input';
+import { setValue } from '../../stores/input';
 
-import CfInfo from './CfInfo';
-import CfInputControlElements from './CfInputControlElements';
-import CfSubmitButton from './CfSubmitButton';
+import CfInfo from '../CfInfo';
+import CfInputControlElements from '../CfInputControlElements';
+import CfSubmitButton from '../CfSubmitButton';
 
 export default function CfInput () {
 
