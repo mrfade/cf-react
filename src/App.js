@@ -16,7 +16,10 @@ function App() {
       name: 'name',
       placeholder: 'Enter your name',
       required: true,
-      validation: 'email'
+      validation: [
+        'minLength:3',
+        'required',
+      ],
     },
     {
       type: 'robot-message',
@@ -32,6 +35,7 @@ function App() {
       name: 'email',
       placeholder: 'Enter your email',
       required: true,
+      validation: 'email'
     },
     {
       type: 'multi',

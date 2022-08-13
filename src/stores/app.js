@@ -143,21 +143,49 @@ export const validateAndSubmit = () => (dispatch, getState) => {
 
   const filteredValue = value.trim();
 
+  const buildErrorMessage = (message, values) => {
+    if (values.length > 0) {
+      values.forEach((value, index) => {
+        message = message.replace(`\{${index}\}`, value);
+      });
+    }
+
+    return message;
+  }
+
+  const handleValidation = (_validation) => {
+    const [funcName, values] = _validation.split(':');
+    const func = VALIDATIONS[funcName];
+
+    if (!func) {
+      return;
+    }
+
+    let _valid = true;
+    let _errorMessage = '';
+
+    if (typeof values === 'string' || Array.isArray(values)) {
+      const _values = values.split(',');
+      _valid = func.handler(filteredValue, ..._values);
+      _errorMessage = buildErrorMessage(func.errorMessage, _values);
+    } else {
+      _valid = func.handler(filteredValue);
+      _errorMessage = func.errorMessage;
+    }
+
+    if (!_valid) {
+      valid = false;
+      errorMessage = _errorMessage;
+      return;
+    }
+  };
+
   // run validations
   if (validation) {
     if (Array.isArray(validation)) {
-      validation.forEach((_validation) => {
-        if (VALIDATIONS[_validation] && !VALIDATIONS[_validation].handler(filteredValue)) {
-          valid = false;
-          errorMessage = VALIDATIONS[_validation].errorMessage;
-          return;
-        }
-      });
-    } else if (VALIDATIONS[validation]) {
-      if (!VALIDATIONS[validation].handler(filteredValue)) {
-        valid = false;
-        errorMessage = VALIDATIONS[validation].errorMessage;
-      }
+      validation.forEach(handleValidation);
+    } else {
+      handleValidation(validation);
     }
   }
 
