@@ -10,7 +10,7 @@ export default function CfInput () {
 
   const inputRef = useRef(null);
 
-  const { value, disabled } = useSelector(state => state.input);
+  const { value, disabled, required, placeholder } = useSelector(state => state.input);
   const { currentQuestion } = useSelector(state => state.app);
   const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ export default function CfInput () {
       <CfInputControlElements />
 
       <div className="inputWrapper">
-        <textarea ref={inputRef} value={value} onChange={(e) => handleInputChange(e.target.value)} disabled={disabled} type="input" tabIndex={1} rows="1" placeholder="Some copy" style={{ height: '60px' }}></textarea>
+        <textarea ref={inputRef} value={value} onChange={(e) => handleInputChange(e.target.value)} disabled={disabled} type="input" tabIndex={1} rows="1" placeholder={placeholder ?? 'Write your answer'} style={{ height: '60px' }}></textarea>
 
         <CfSubmitButton />
       </div> 

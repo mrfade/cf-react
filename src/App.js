@@ -16,10 +16,15 @@ function App() {
       name: 'name',
       placeholder: 'Enter your name',
       required: true,
+      validation: 'email'
     },
     {
       type: 'robot-message',
       label: 'Great!',
+    },
+    {
+      type: 'robot-message',
+      label: 'One more question',
     },
     {
       type: 'text',

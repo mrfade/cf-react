@@ -9,6 +9,7 @@ export const inputSlice = createSlice({
     disabled: true,
     required: false,
     placeholder: '',
+    validation: null, // string or array of strings or function
   },
   reducers: {
     setType: (state, action) => {
@@ -33,10 +34,14 @@ export const inputSlice = createSlice({
 
     setPlaceholder: (state, action) => {
       state.placeholder = action.payload;
+    },
+
+    setValidation: (state, action) => {
+      state.validation = action.payload;
     }
   }
 });
 
-export const { setType, setValue, setName, setDisabled, setRequired, setPlaceholder } = inputSlice.actions;
+export const { setType, setValue, setName, setDisabled, setRequired, setPlaceholder, setValidation } = inputSlice.actions;
 
 export default inputSlice.reducer;
