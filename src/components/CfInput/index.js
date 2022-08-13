@@ -30,7 +30,7 @@ export default function CfInput() {
       'disabled': errorMessage.length > 0
     })}>
       <CfInfo />
-      {!disabled && type === "multi" ? <CfInputControlElements /> : null}
+      {!disabled && type !== "text" ? <CfInputControlElements type={type} /> : null}
       <div className="inputWrapper">
         <input
           required={required}

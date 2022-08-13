@@ -40,6 +40,13 @@ function App() {
       placeholder: "Select an option or type your own",
       required: true,
     },
+    {
+      type: "checkbox",
+      label: "What is your name?",
+      name: "name",
+      placeholder: "Enter your name",
+      required: true,
+    },
   ];
 
   const dispatch = useDispatch();

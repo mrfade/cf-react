@@ -2,10 +2,30 @@
 
 .cf-button.cf-checkbox-button {
 
-	&:hover,
 	&:focus {
+
+		&.checked {
+			.cf-checkbox {
+				background: $cf-color-primary !important;
+				color: $cf-color-secondary !important;
+			}
+		}
+
+		background: #fff !important;
+		color: $cf-color-primary !important;
+
 		.cf-checkbox {
-			background: $cf-color-primary;
+			background: #fff !important;
+		}
+
+	}
+
+	&:hover {
+		background: $cf-color-primary !important;
+		color: $cf-color-secondary !important;
+
+		.cf-checkbox {
+			background: $cf-color-primary !important;
 
 			&:after {
 				transform: scale(1, 1);
@@ -74,8 +94,7 @@
 		}
 	}
 
-	&[checked="checked"],
-	&[selected="selected"] {
+	&.checked {
 		background: $cf-color-primary !important;
 		color: $cf-color-secondary !important;
 

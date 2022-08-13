@@ -2,9 +2,11 @@ import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { validateAndSubmit } from "../../stores/app";
 import { setValue } from "../../stores/input";
+import Radio from "./Radio";
+import Checkbox from "./CheckBox";
 
-export default function CfInputControlElements() {
-  const inputRef = useRef(null);
+export default function CfInputControlElements(props) {
+  const { type } = props;
   const { value, disabled, required, placeholder } = useSelector(
     (state) => state.inputControl
   );
@@ -22,41 +24,24 @@ export default function CfInputControlElements() {
     <div className="cf-input-control-elements hide-nav-buttons one-row resized animate-in">
       <div className="cf-list-button prev"></div>
       <div className="cf-list-button next"></div>
-      <div
-        className="cf-list"
-        style={{
-          height: "52px",
-          width: "100%",
-          transform: "translateX(0px)",
-        }}
-      >
-        <div
-          className="cf-radio-button cf-button animate-in "
-          onClick={(e) => {
-            e.preventDefault();
-            handleInputChange("Yes");
-          }}
-          tabindex="2"
-        >
-          <div>
-            <div className="cf-radio"></div>
-            <span>Yes</span>
-          </div>
-        </div>
-        <div
-          className="cf-radio-button cf-button animate-in"
-          onClick={(e) => {
-            e.preventDefault();
-            handleInputChange("Yes");
-          }}
-          tabindex="3"
-        >
-          <div>
-            <div className="cf-radio"></div>
-            <span>No</span>
-          </div>
-        </div>
-      </div>
+      {type === "multi" ? (
+        <Radio
+          handleInputChange={handleInputChange}
+          value={value}
+          disabled={disabled}
+          required={required}
+          placeholder={placeholder}
+        />
+      ) : null}
+      {type === "checkbox" ? (
+        <Checkbox
+          handleInputChange={handleInputChange}
+          value={value}
+          disabled={disabled}
+          required={required}
+          placeholder={placeholder}
+        />
+      ) : null}
     </div>
   );
 }
