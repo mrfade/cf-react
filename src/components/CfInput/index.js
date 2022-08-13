@@ -38,7 +38,7 @@ export default function CfInput() {
           value={value}
           onChange={(e) => handleInputChange(e.target.value)}
           disabled={disabled}
-          type={type}
+          type="text"
           tabIndex={1}
           rows="1"
           placeholder={errorMessage.length > 0 ? errorMessage : (placeholder ?? "Write your answer")}
