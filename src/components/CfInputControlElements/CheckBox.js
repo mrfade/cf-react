@@ -55,6 +55,21 @@ const CheckBox = (props) => {
             <span>Javascript</span>
           </div>
         </div>
+        <div
+          className={
+            "cf-checkbox-button cf-button animate-in " +
+            (list.includes("React.js") ? " checked" : " unchecked")
+          }
+          onClick={(e) => {
+            handleClick("React.js");
+          }}
+          tabindex="3"
+        >
+          <div>
+            <div className="cf-checkbox"></div>
+            <span>React.js</span>
+          </div>
+        </div>
       </div>
       <div
         className="cf-button animate-in"
