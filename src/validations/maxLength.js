@@ -1,5 +1,5 @@
 export const maxLength = {
-  errorMessage: 'Value must be at most {maxLength} characters',
+  errorMessage: 'Value must be at most {0} characters',
   handler: (value, maxLength) => {
     if (typeof value !== 'string') {
       return false;

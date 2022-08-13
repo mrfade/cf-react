@@ -11,11 +11,31 @@ import "./styles/conversational-form.scss";
 function App() {
   const questions = [
     {
-      type: "multi",
-      label: "What is your name?",
-      name: "name",
-      placeholder: "Enter your name",
+      type: 'text',
+      label: 'What is your name?',
+      name: 'name',
+      placeholder: 'Enter your name',
       required: true,
+      validation: [
+        'minLength:3',
+        'required',
+      ],
+    },
+    {
+      type: 'robot-message',
+      label: 'Great!',
+    },
+    {
+      type: 'robot-message',
+      label: 'One more question',
+    },
+    {
+      type: 'email',
+      label: 'What is your email?',
+      name: 'email',
+      placeholder: 'Enter your email',
+      required: true,
+      validation: 'email'
     },
     {
       type: "robot-message",
