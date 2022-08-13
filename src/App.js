@@ -33,6 +33,13 @@ function App() {
       placeholder: 'Enter your email',
       required: true,
     },
+    {
+      type: 'multi',
+      label: 'Do you want to subscribe to our newsletter?',
+      name: 'subscribe',
+      placeholder: 'Select an option',
+      required: true,
+    },
   ];
 
   const dispatch = useDispatch();
