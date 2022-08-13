@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { start, setQuestions, validateAndSubmit } from "./stores/app";
+import {
+  start,
+  setQuestions,
+  validateAndSubmit,
+  _upHandler,
+} from "./stores/app";
 
 import ChatList from "./components/ChatList";
 import CfInput from "./components/CfInput";
@@ -11,34 +16,28 @@ import "./styles/conversational-form.scss";
 function App() {
   const questions = [
     {
-      type: 'text',
-      label: 'What is your name?',
-      name: 'name',
-      placeholder: 'Enter your name',
+      type: "text",
+      label: "What is your name?",
+      name: "name",
+      placeholder: "Enter your name",
       required: true,
-      validation: [
-        'minLength:3',
-        'required',
-      ],
+      validation: ["minLength:3", "required"],
     },
     {
-      type: 'robot-message',
-      label: 'Great!',
+      type: "robot-message",
+      label: "Great!",
     },
     {
-      type: 'robot-message',
-      label: 'One more question',
+      type: "robot-message",
+      label: "One more question",
     },
     {
-      type: 'email',
-      label: 'What is your email?',
-      name: 'email',
-      placeholder: 'Enter your email',
+      type: "email",
+      label: "What is your email?",
+      name: "email",
+      placeholder: "Enter your email",
       required: true,
-      validation: [
-        'email',
-        'required',
-      ]
+      validation: ["email", "required"],
     },
     {
       type: "multi",
@@ -53,6 +52,11 @@ function App() {
       name: "checkbox",
       placeholder: "Select an option or type your own",
       required: true,
+      options: [
+        "PHP",
+        "Javascript",
+        "React.js",
+      ],
     },
   ];
 
@@ -61,7 +65,7 @@ function App() {
 
   const upHandler = ({ key, shiftKey }) => {
     if (key === "Enter" && !shiftKey) {
-      dispatch(validateAndSubmit());
+      dispatch(_upHandler());
     }
   };
 

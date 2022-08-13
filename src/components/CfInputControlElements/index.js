@@ -2,12 +2,14 @@ import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { validateAndSubmit } from "../../stores/app";
 import { setValue } from "../../stores/input";
+import * as inputControl from "../../stores/inputControl";
+
 import Radio from "./Radio";
 import Checkbox from "./CheckBox";
 
 export default function CfInputControlElements(props) {
-  const { type } = props;
-  const { value, disabled, required, placeholder } = useSelector(
+  const { type, filterKey, value } = props;
+  const { disabled, required, placeholder, options } = useSelector(
     (state) => state.inputControl
   );
   const { currentQuestion } = useSelector((state) => state.app);
@@ -21,7 +23,7 @@ export default function CfInputControlElements(props) {
   };
 
   const handleCheckboxChange = (value) => {
-    dispatch(setValue(value));
+    dispatch(inputControl.setValue(value));
   };
 
   return (
@@ -35,16 +37,19 @@ export default function CfInputControlElements(props) {
           disabled={disabled}
           required={required}
           placeholder={placeholder}
+          options={options}
         />
       ) : null}
       {type === "checkbox" ? (
         <Checkbox
+          filterKey={filterKey}
           handleCheckboxChange={handleCheckboxChange}
           handleInputChange={handleInputChange}
           value={value}
           disabled={disabled}
           required={required}
           placeholder={placeholder}
+          options={options}
         />
       ) : null}
     </div>

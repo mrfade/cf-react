@@ -10,7 +10,7 @@ import CfSubmitButton from "../CfSubmitButton";
 export default function CfInput() {
   const inputRef = useRef(null);
 
-  const { value, disabled, required, placeholder, type, errorMessage } = useSelector(
+  const { value, disabled, required, placeholder, type, errorMessage, filterKey } = useSelector(
     (state) => state.input
   );
   const { currentQuestion } = useSelector((state) => state.app);
@@ -30,7 +30,7 @@ export default function CfInput() {
       'disabled': errorMessage.length > 0
     })}>
       <CfInfo />
-      {!disabled && type !== "text" ? <CfInputControlElements type={type} /> : null}
+      {!disabled && type !== "text" ? <CfInputControlElements value={value} filterKey={filterKey} type={type} /> : null}
       <div className="inputWrapper">
         <input
           required={required}

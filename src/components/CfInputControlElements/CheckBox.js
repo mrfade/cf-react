@@ -2,11 +2,32 @@ import React, { useState, useEffect } from "react";
 
 const CheckBox = (props) => {
   const [list, setList] = useState([]);
-  const { handleInputChange, name, value, onChange, handleCheckboxChange } =
-    props;
+  const {
+    handleInputChange,
+    name,
+    value,
+    onChange,
+    handleCheckboxChange,
+    options,
+  } = props;
+  const [optionsList, setOptionsList] = useState(options);
   useEffect(() => {
     handleCheckboxChange(list.join(","));
   }, [list]);
+
+  useEffect(() => {
+   if (value.length > 0) {
+    setOptionsList(
+        options.filter((option) => {
+            return option.toLowerCase().includes(value.toLowerCase());
+        })
+      );
+    }
+    else {
+        setOptionsList(options);
+    }
+  }, [value]);
+
   const handleClick = (e) => {
     if (list.includes(e)) {
       setList(list.filter((item) => item !== e));
@@ -28,52 +49,25 @@ const CheckBox = (props) => {
           transform: "translateX(0px)",
         }}
       >
-        <div
-          className={
-            "cf-checkbox-button  cf-button animate-in" +
-            (list.includes("PHP") ? " checked" : " unchecked")
-          }
-          onClick={(e) => {
-            handleClick("PHP");
-          }}
-          tabindex="2"
-        >
-          <div>
-            <div className="cf-checkbox"></div>
-            <span>PHP</span>
-          </div>
-        </div>
-
-        <div
-          className={
-            "cf-checkbox-button cf-button animate-in " +
-            (list.includes("Javascript") ? " checked" : " unchecked")
-          }
-          onClick={(e) => {
-            handleClick("Javascript");
-          }}
-          tabindex="3"
-        >
-          <div>
-            <div className="cf-checkbox"></div>
-            <span>Javascript</span>
-          </div>
-        </div>
-        <div
-          className={
-            "cf-checkbox-button cf-button animate-in " +
-            (list.includes("React.js") ? " checked" : " unchecked")
-          }
-          onClick={(e) => {
-            handleClick("React.js");
-          }}
-          tabindex="3"
-        >
-          <div>
-            <div className="cf-checkbox"></div>
-            <span>React.js</span>
-          </div>
-        </div>
+        {optionsList.map((option, i) => {
+          return (
+            <div
+              className={
+                "cf-checkbox-button  cf-button animate-in" +
+                (list.includes(option) ? " checked" : " unchecked")
+              }
+              onClick={(e) => {
+                handleClick(option);
+              }}
+              tabindex={i}
+            >
+              <div>
+                <div className="cf-checkbox"></div>
+                <span>{option}</span>
+              </div>
+            </div>
+          );
+        })}
       </div>
       <div
         className="cf-button animate-in"

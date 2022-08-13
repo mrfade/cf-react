@@ -10,8 +10,8 @@ export const inputSlice = createSlice({
     required: false,
     placeholder: '',
     validation: null, // validation type
-
     errorMessage: '',
+    filterKey: '',
   },
   reducers: {
     setType: (state, action) => {
@@ -45,6 +45,9 @@ export const inputSlice = createSlice({
     setErrorMessage: (state, action) => {
       state.errorMessage = action.payload;
     },
+    setFilterKey: (state, action) => {
+      state.filterKey = action.payload;
+    },
 
     reset: (state) => {
       state.type = '';
@@ -55,10 +58,11 @@ export const inputSlice = createSlice({
       state.placeholder = '';
       state.validation = null;
       state.errorMessage = '';
+      state.filterKey = '';
     }
   }
 });
 
-export const { setType, setValue, setName, setDisabled, setRequired, setPlaceholder, setValidation, setErrorMessage, reset } = inputSlice.actions;
+export const { setType, setValue, setName, setDisabled, setRequired, setPlaceholder, setValidation, setErrorMessage, setFilterKey, reset } = inputSlice.actions;
 
 export default inputSlice.reducer;
