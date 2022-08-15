@@ -61,34 +61,30 @@ const CheckBox = (props) => {
       <div
         className="cf-list"
         style={{
-          height: "52px",
+          height: isloading ? "0px" : "auto",
           width: "100%",
           transform: "translateX(0px)",
         }}
       >
-        {isloading ? (
-          <div className="cf-loader"></div>
-        ) : (
-          optionsList.map((option, i) => {
-            return (
-              <div
-                className={
-                  "cf-checkbox-button  cf-button animate-in" +
-                  (list.includes(option) ? " checked" : " unchecked")
-                }
-                onClick={(e) => {
-                  handleClick(option);
-                }}
-                tabindex={i}
-              >
-                <div>
-                  <div className="cf-checkbox"></div>
-                  <span>{option}</span>
-                </div>
+        {optionsList.map((option, i) => {
+          return (
+            <div
+              className={
+                "cf-checkbox-button  cf-button animate-in" +
+                (list.includes(option) ? " checked" : " unchecked")
+              }
+              onClick={(e) => {
+                handleClick(option);
+              }}
+              tabindex={i}
+            >
+              <div>
+                <div className="cf-checkbox"></div>
+                <span>{option}</span>
               </div>
-            );
-          })
-        )}
+            </div>
+          );
+        })}
       </div>
       <div
         className="cf-button animate-in"
