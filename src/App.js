@@ -20,6 +20,7 @@ function App() {
   const [questionsData, setQuestionsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("");
+  const [error, setError] = useState("");
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -29,11 +30,23 @@ function App() {
     fetch(`https://e-solak.jotform.dev/intern-api/conversational-form/${id}`)
       .then((res) => res.json())
       .then((data) => {
+        if (data.error) {
+          throw new Error(data.error);
+        }
+
+        if (data.responseCode !== 200) {
+          throw new Error('Could not get form');
+        }
+
         dispatch(setQuestions(data.content.questions));
         setTitle(data.content.form_title);
       })
-      .then(() => setLoading(false))
-      .then(() => startConversation());
+      .then(() => startConversation())
+      .catch((error) => {
+        console.log(error);
+
+        setError(error.message);
+      }).finally(() => setLoading(false))
   }, []);
 
   const upHandler = ({ key, shiftKey }) => {
@@ -54,23 +67,33 @@ function App() {
     dispatch(start());
   };
 
+  const _render = () => {
+    if (!id) {
+      return <div>no id found</div>
+    }
+
+    if (loading) {
+      return <Loader />
+    }
+
+    if (error) {
+      return <div>{error}</div>
+    }
+
+    return (
+      <div className="conversational-form conversational-form--enable-animation conversational-form--show">
+        <CfTitle title={title} />
+        <div className="conversational-form-inner">
+          <ChatList />
+          <CfInput />
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div>
-      {id ? (
-        loading ? (
-         <Loader/>
-        ) : (
-          <div className="conversational-form conversational-form--enable-animation conversational-form--show">
-            <CfTitle title={title} />
-            <div className="conversational-form-inner">
-              <ChatList />
-              <CfInput />
-            </div>
-          </div>
-        )
-      ) : (
-        <div>no id found</div>
-      )}
+      {(_render())}
     </div>
   );
 }
