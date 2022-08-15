@@ -49,6 +49,7 @@ function App() {
         "Yes, I want to subscribe",
         "No, I don't want to subscribe",
       ],
+      validation: ["required"],
     },
     {
       type: "checkbox",
@@ -61,6 +62,7 @@ function App() {
         "Javascript",
         "React.js",
       ],
+      validation: ["required"],
     },
   ];
 
