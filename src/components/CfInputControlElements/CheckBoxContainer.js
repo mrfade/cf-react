@@ -92,18 +92,6 @@ const CheckBox = (props) => {
           );
         })}
       </div>
-      <div
-        className="cf-button animate-in"
-        style={{
-          backgroundColor: "#303030",
-          padding: "15px",
-          color: "white",
-          border: "none",
-        }}
-        onClick={handleSubmit}
-      >
-        Submit
-      </div>
     </div>
   );
 };
