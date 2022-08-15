@@ -26,7 +26,7 @@ export default function CfInputControlElements(props) {
     <div className="cf-input-control-elements hide-nav-buttons one-row resized">
       <div className="cf-list-button prev"></div>
       <div className="cf-list-button next"></div>
-      {type === "multi" ? (
+      {type === "radio" ? (
         <RadioContainer
           handleInputChange={handleInputChange}
         />
