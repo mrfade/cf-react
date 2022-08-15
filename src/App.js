@@ -6,6 +6,7 @@ import {
   start,
   setQuestions,
   _upHandler,
+  setFormID
 } from "./stores/app";
 
 import ChatList from "./components/ChatList";
@@ -24,6 +25,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(setFormID(id));
     fetch(`https://e-solak.jotform.dev/intern-api/conversational-form/${id}`)
       .then((res) => res.json())
       .then((data) => {

@@ -35,6 +35,7 @@ export const appSlice = createSlice({
     robotDelay: 500,
     questions: [],
     currentQuestion: -1,
+    formID: "",
   },
   reducers: {
     setStatus: (state, action) => {
@@ -83,10 +84,13 @@ export const appSlice = createSlice({
     setCurrentQuestion: (state, action) => {
       state.currentQuestion = action.payload;
     },
+    setFormID: (state, action) => {
+      state.formID = action.payload;
+    }
   },
 });
 
-export const { setStatus, setRobotDelay, setQuestions, setCurrentQuestion } =
+export const { setStatus, setRobotDelay, setQuestions, setCurrentQuestion, setFormID } =
   appSlice.actions;
 
 export const _upHandler = () => (dispatch, getState) => {
@@ -168,8 +172,26 @@ export const finished = () => (dispatch, getState) => {
       message: "Thank you for your time!",
     })
   );
-
+  const { formID } = getState().app;
   const formData = getFormData(getState());
+  fetch(
+    "https://e-solak.jotform.dev/intern-api/conversational-form/" +
+      formID,
+    {
+      method: "POST",
+      body: formData,
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Formdata, json:", data);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+      console.log("Formdata, finally");
+    });
   console.log("formData", Object.fromEntries(formData));
 };
 
