@@ -1,6 +1,7 @@
 import React from "react";
 
-export const CfTitle = () => {
+export const CfTitle = (props) => {
+  const { title } = props;
   return (
     <div style={{
         display: "flex",
@@ -12,7 +13,7 @@ export const CfTitle = () => {
         position: "fixed",
         zIndex: "1",
     }}>
-      <h1>Conversational Form</h1>
+      <h1>{title}</h1>
     </div>
   );
 };
