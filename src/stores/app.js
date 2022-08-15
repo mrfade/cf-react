@@ -140,6 +140,12 @@ export const nextQuestion = () => (dispatch, getState) => {
     return;
   }
 
+  // map options to make them string
+  let options = [];
+  if (question.options) {
+    options = question.options.map((option) => option.toString());
+  }
+
   dispatch(setType(question.type));
   dispatch(setValue(question.defaultValue ?? ""));
   dispatch(setName(question.name));
@@ -147,7 +153,7 @@ export const nextQuestion = () => (dispatch, getState) => {
   dispatch(setRequired(question.required ?? false));
   dispatch(setPlaceholder(question.placeholder ?? ""));
   dispatch(setValidation(question.validation ?? null));
-  dispatch(setOptions(question.options ?? []));
+  dispatch(setOptions(options ?? []));
 };
 
 export const finished = () => (dispatch, getState) => {
