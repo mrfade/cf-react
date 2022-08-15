@@ -13,6 +13,7 @@ import ChatList from "./components/ChatList";
 import CfInput from "./components/CfInput";
 import { CfTitle } from "./components/CfTitle";
 import { Loader } from "./components/Loader";
+import { ErrorPage } from "./components/ErrorPage";
 
 import "./styles/conversational-form.scss";
 
@@ -69,7 +70,7 @@ function App() {
 
   const _render = () => {
     if (!id) {
-      return <div>no id found</div>
+      return <ErrorPage message="Form ID is not provided" />
     }
 
     if (loading) {
@@ -77,7 +78,7 @@ function App() {
     }
 
     if (error) {
-      return <div>{error}</div>
+      return <ErrorPage message={error} />
     }
 
     return (
@@ -92,9 +93,9 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       {(_render())}
-    </div>
+    </>
   );
 }
 
