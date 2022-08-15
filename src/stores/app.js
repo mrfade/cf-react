@@ -177,6 +177,10 @@ export const validateAndSubmit = () => (dispatch, getState) => {
   } else {
     filteredValue = inputValue.trim();
   }
+
+  console.log("filteredValue", filteredValue);
+  console.log("validation", filteredValue === '');
+
   let valid = true;
   let errorMessage = "";
 
