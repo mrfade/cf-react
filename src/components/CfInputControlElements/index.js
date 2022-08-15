@@ -27,7 +27,7 @@ export default function CfInputControlElements(props) {
   };
 
   return (
-    <div className="cf-input-control-elements hide-nav-buttons one-row resized animate-in">
+    <div className="cf-input-control-elements hide-nav-buttons one-row resized">
       <div className="cf-list-button prev"></div>
       <div className="cf-list-button next"></div>
       {type === "multi" ? (

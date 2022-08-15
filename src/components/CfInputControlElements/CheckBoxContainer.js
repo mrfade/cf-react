@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const CheckBox = (props) => {
@@ -12,7 +12,11 @@ const CheckBox = (props) => {
     const { options, checkboxSelect } = useSelector(
     (state) => state.inputControl
   );
+  const { robotDelay } = useSelector((state) => state.app);
   const [optionsList, setOptionsList] = useState(options);
+
+  const listRef = useRef(null);
+
   useEffect(() => {
     handleCheckboxChange(list.join(","));
   }, [list]);
@@ -20,7 +24,7 @@ const CheckBox = (props) => {
   useEffect(() => {
     setTimeout(() => {
       setIsloading(false);
-    }, 1000);
+    }, robotDelay);
   }, []);
 
   useEffect(() => {
@@ -59,11 +63,13 @@ const CheckBox = (props) => {
   return (
     <div>
       <div
+        ref={listRef}
         className="cf-list"
         style={{
-          height: isloading ? "0px" : "auto",
+          height: isloading ? "0px" : listRef.current.scrollHeight,
           width: "100%",
           transform: "translateX(0px)",
+          overflow: "hidden",
         }}
       >
         {optionsList.map((option, i) => {
