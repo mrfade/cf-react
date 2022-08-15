@@ -45,6 +45,10 @@ function App() {
       name: "subscribe",
       placeholder: "Select an option or type your own",
       required: true,
+      options: [
+        "Yes, I want to subscribe",
+        "No, I don't want to subscribe",
+      ],
     },
     {
       type: "checkbox",
