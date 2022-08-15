@@ -1,20 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CheckBox = (props) => {
-  const [list, setList] = useState([]);
-  const [isloading, setIsloading] = useState(true);
   const {
     handleInputChange,
     value,
     handleCheckboxChange,
   } = props;
-    const { options, checkboxSelect } = useSelector(
+
+  const { robotDelay } = useSelector((state) => state.app);
+  const { options, checkboxSelect } = useSelector(
     (state) => state.inputControl
   );
-  const { robotDelay } = useSelector((state) => state.app);
-  const [optionsList, setOptionsList] = useState(options);
 
+  const [list, setList] = useState([]);
+  const [optionsList, setOptionsList] = useState(options);
+  
+  const [isloading, setIsloading] = useState(true);    
   const listRef = useRef(null);
 
   useEffect(() => {
@@ -40,14 +42,14 @@ const CheckBox = (props) => {
   }, [value]);
 
   useEffect(() => {
- if(checkboxSelect.length > 0){
-  if (list.includes(optionsList[0])) {
-    setList(list.filter((item) => item !== optionsList[0]));
-  } else {
-    setList([...list, optionsList[0]]);
-  }
- }
-  } , [checkboxSelect]);
+    if(checkboxSelect.length > 0){
+      if (list.includes(optionsList[0])) {
+        setList(list.filter((item) => item !== optionsList[0]));
+      } else {
+        setList([...list, optionsList[0]]);
+      }
+    }
+  }, [checkboxSelect]);
 
   const handleClick = (e) => {
     if (list.includes(e)) {
@@ -56,6 +58,7 @@ const CheckBox = (props) => {
       setList([...list, e]);
     }
   };
+
   const handleSubmit = () => {
     handleInputChange(list.join(","));
   };
