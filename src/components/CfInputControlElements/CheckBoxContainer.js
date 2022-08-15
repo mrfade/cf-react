@@ -26,7 +26,7 @@ const CheckBox = (props) => {
   useEffect(() => {
     setTimeout(() => {
       setIsloading(false);
-    }, robotDelay);
+    }, robotDelay + 337.5);
   }, []);
 
   useEffect(() => {
