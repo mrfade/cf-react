@@ -1,19 +1,33 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 
 const Radio = (props) => {
-  const { options } = useSelector((state) => state.inputControl);
-  const [optionsList, setOptionsList] = useState(options);
   const { handleInputChange } = props;
+
+  const { robotDelay } = useSelector((state) => state.app);
+  const { options } = useSelector((state) => state.inputControl);
+
+  const [optionsList, setOptionsList] = useState(options);
+
+  const [isloading, setIsloading] = useState(true);
+  const listRef = useRef(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsloading(false);
+    }, robotDelay + 337.5);
+  }, []);
 
   return (
     <div>
       <div
+        ref={listRef}
         className="cf-list"
         style={{
-          height: "52px",
+          height: isloading ? "0px" : listRef.current.scrollHeight,
           width: "100%",
           transform: "translateX(0px)",
+          overflow: "hidden",
         }}
       >
         {optionsList.map((option, index) => {
