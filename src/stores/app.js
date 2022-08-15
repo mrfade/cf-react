@@ -172,7 +172,7 @@ export const validateAndSubmit = () => (dispatch, getState) => {
   const { type, value: inputValue, name, validation } = getState().input;
   const { value: inputControlValue } = getState().inputControl;
   let filteredValue;
-  if (type === "checkbox") {
+  if (type === "checkbox" || type === "multi") {
     filteredValue = inputControlValue.trim();
   } else {
     filteredValue = inputValue.trim();

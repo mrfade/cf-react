@@ -8,15 +8,11 @@ import RadioContainer from "./RadioContainer";
 import CheckBoxContainer from "./CheckBoxContainer";
 
 export default function CfInputControlElements(props) {
-  const { type, filterKey, value } = props;
-  const { disabled, required, placeholder, options } = useSelector(
-    (state) => state.inputControl
-  );
-  const { currentQuestion } = useSelector((state) => state.app);
+  const { type, value } = props;
   const dispatch = useDispatch();
 
   const handleInputChange = (value) => {
-    dispatch(setValue(value));
+    dispatch(inputControl.setValue(value));
     if (value.length > 0) {
       dispatch(validateAndSubmit());
     }
