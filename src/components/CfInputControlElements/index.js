@@ -4,8 +4,8 @@ import { validateAndSubmit } from "../../stores/app";
 import { setValue } from "../../stores/input";
 import * as inputControl from "../../stores/inputControl";
 
-import Radio from "./Radio";
-import Checkbox from "./CheckBox";
+import RadioContainer from "./RadioContainer";
+import CheckBoxContainer from "./CheckBoxContainer";
 
 export default function CfInputControlElements(props) {
   const { type, filterKey, value } = props;
@@ -31,25 +31,15 @@ export default function CfInputControlElements(props) {
       <div className="cf-list-button prev"></div>
       <div className="cf-list-button next"></div>
       {type === "multi" ? (
-        <Radio
+        <RadioContainer
           handleInputChange={handleInputChange}
-          value={value}
-          disabled={disabled}
-          required={required}
-          placeholder={placeholder}
-          options={options}
         />
       ) : null}
       {type === "checkbox" ? (
-        <Checkbox
-          filterKey={filterKey}
+        <CheckBoxContainer
           handleCheckboxChange={handleCheckboxChange}
           handleInputChange={handleInputChange}
           value={value}
-          disabled={disabled}
-          required={required}
-          placeholder={placeholder}
-          options={options}
         />
       ) : null}
     </div>

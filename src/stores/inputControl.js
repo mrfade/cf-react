@@ -5,6 +5,7 @@ export const inputControlSlice = createSlice({
   initialState: {
     options: [], // string or array of strings or function
     value: '',
+    checkboxSelect:'',
   },
   reducers: {
     setOptions: (state, action) => {
@@ -12,10 +13,13 @@ export const inputControlSlice = createSlice({
     },
     setValue: (state, action) => {
       state.value = action.payload;
+    },
+    setChecbokSelect: (state, action) => {
+      state.checkboxSelect = action.payload;
     }
   }
 });
 
-export const { setOptions, setValue } = inputControlSlice.actions;
+export const { setOptions, setValue, setChecbokSelect } = inputControlSlice.actions;
 
 export default inputControlSlice.reducer;

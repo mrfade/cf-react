@@ -12,7 +12,7 @@ import {
   setFilterKey,
   reset,
 } from "./input";
-import { setOptions } from "./inputControl";
+import { setChecbokSelect, setOptions } from "./inputControl";
 import { addAnswer, getFormData } from "./answer";
 import { email, maxLength, minLength, required } from "../validations";
 
@@ -90,11 +90,16 @@ export const { setStatus, setRobotDelay, setQuestions, setCurrentQuestion } =
   appSlice.actions;
 
 export const _upHandler = () => (dispatch, getState) => {
+  const { value: inputControlValue } = getState().inputControl;
   const { value, type } = getState().input;
   if (type == "checkbox") {
     dispatch(setFilterKey(value));
   }
+  if (type == "checkbox" && value.length > 0) {
+    dispatch(setChecbokSelect(value));
+  } else {
   dispatch(validateAndSubmit());
+  }
 };
 
 export const start = () => (dispatch, getState) => {
