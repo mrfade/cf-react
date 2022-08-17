@@ -17,7 +17,18 @@ export const CfTitle = (props) => {
         zIndex: "1",
       }}
     >
-      <h1>{title}</h1>
+      <div
+        style={{
+          width: "398px",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "clip",
+          fontSize: "20px",
+          fontWeight: "bold",
+        }}
+      >
+        {title}
+      </div>
     </div>
   );
 };
