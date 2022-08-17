@@ -27,11 +27,15 @@ $introDelay: 0.4s;
 			transition-delay: 0s, 0s, 0s, $introDelay, $introDelay;
 			opacity: 1;
 			transform: translateY(0px) rotateX(0deg);
+			border-radius: 5px;
+			box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
 		}
 
 		.cf-submit-button.cf-input-button {
 			transition-delay: 0s, 0s $introDelay + 0.35;
 			transform: scale(1, 1);
+			border-bottom-right-radius: 5px;
+			border-top-right-radius: 5px;
 		}
 	}
 
@@ -384,7 +388,7 @@ $introDelay: 0.4s;
 	}
 
 	div.cf-icon-progress {
-		transform: rotateX(0deg);
+		transform: rotate(90deg);
 		opacity: 1;
 		background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='30px' height='30px' viewBox='0 0 30 30' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg fill='"+ encodecolor($cf-input-icon-color) + "'%3E%3Cpolygon transform='translate%2815.500000, 15.500000%29 rotate%2890.000000%29 translate%28-15.500000, -15.500000%29 ' points='22 14.6875 12.111875 14.6875 16.6496875 10.1496875 15.5 9 9 15.5 15.5 22 16.6496875 20.8503125 12.111875 16.3125 22 16.3125'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 		background-size: relativeValue(30px) relativeValue(30px);

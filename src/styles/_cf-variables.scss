@@ -5,8 +5,8 @@ $cf-base-font-size: 18px !default; // Default is 12px. Positions and sizes will 
 $cf-mobile-font-size: 16px !default; // Default is 12px. Positions and sizes will be relative to this size.
 
 $cf-color-background: #fff !default;
-$cf-color-primary: #303030 !default;
-$cf-color-secondary: #E5E6EA !default;
+$cf-color-primary: #ff6100 !default;
+$cf-color-secondary: #f3f3fe !default;
 $cf-color-error: #fe8d84 !default;
 
 $cf-font-family: 'Helvetica Neue',
@@ -36,7 +36,7 @@ $cf-ease-easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275) !default;
 $cf-chat-response-font-size: $cf-base-font-size !default;
 $cf-chat-response-border-radius: relativeValue(16px) !default;
 
-$cf-color-chat-response-default-text: darken($cf-color-secondary, 70%) !default;
+$cf-color-chat-response-default-text: #4d4d8b !default;
 $cf-color-chat-response-default-bg: $cf-color-secondary !default;
 
 $cf-color-chat-response-user-text: lighten($cf-color-primary, 10%) !default;

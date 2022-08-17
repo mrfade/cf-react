@@ -25,6 +25,7 @@ export const CfTitle = (props) => {
           textOverflow: "clip",
           fontSize: "20px",
           fontWeight: "bold",
+          textAlign: "center",
         }}
       >
         {title}

@@ -5,8 +5,9 @@
 	&:hover,
 	&.highlight,
 	&:focus {
-		cf-radio {
-			background: $cf-color-secondary;
+		.cf-radio {
+		//	background: $cf-color-secondary;
+			border: 1px solid $cf-color-secondary
 		}
 	}
 
