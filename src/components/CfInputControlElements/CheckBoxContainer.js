@@ -69,10 +69,13 @@ const CheckBox = (props) => {
         ref={listRef}
         className="cf-list"
         style={{
-          height: isloading ? "0px" : listRef.current.scrollHeight,
+          height: isloading ? "0px" : "auto",
           width: "100%",
           transform: "translateX(0px)",
           overflow: "hidden",
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
         }}
       >
         {optionsList.map((option, i) => {

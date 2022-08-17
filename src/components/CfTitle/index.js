@@ -3,7 +3,9 @@ import React from "react";
 export const CfTitle = (props) => {
   const { title } = props;
   return (
-    <div style={{
+    <div
+      style={{
+        height: "48px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -12,7 +14,8 @@ export const CfTitle = (props) => {
         width: "100%",
         position: "fixed",
         zIndex: "1",
-    }}>
+      }}
+    >
       <h1>{title}</h1>
     </div>
   );
