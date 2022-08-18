@@ -5,7 +5,7 @@ export const CfTitle = (props) => {
   return (
     <div
       style={{
-        height: "45px",
+        height: "55px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
