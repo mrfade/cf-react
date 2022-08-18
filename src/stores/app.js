@@ -12,7 +12,7 @@ import {
   setFilterKey,
   reset,
 } from "./input";
-import { setChecbokSelect, setOptions } from "./inputControl";
+import { setChecbokSelect, setOptions, setValue as setControlValue } from "./inputControl";
 import { addAnswer, getFormData } from "./answer";
 import { email, maxLength, minLength, required } from "../validations";
 
@@ -268,6 +268,7 @@ export const validateAndSubmit = () => (dispatch, getState) => {
 
   if (valid) {
     dispatch(setValue(""));
+    dispatch(setControlValue(""));
     dispatch(setDisabled(true));
     dispatch(
       addMessage({
