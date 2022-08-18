@@ -2,16 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import {
-  start,
-  setQuestions,
-  _upHandler,
-  setFormID
-} from "./stores/app";
+import { start, setQuestions, _upHandler, setFormID } from "./stores/app";
 
 import ChatList from "./components/ChatList";
 import CfInput from "./components/CfInput";
 import { CfTitle } from "./components/CfTitle";
+import { CfFooter } from "./components/CfFooter";
 import { Loader } from "./components/Loader";
 import { ErrorPage } from "./components/ErrorPage";
 
@@ -34,20 +30,18 @@ function App() {
         if (data.error) {
           throw new Error(data.error);
         }
-
         if (data.responseCode !== 200) {
-          throw new Error('Could not get form');
+          throw new Error("Could not get form");
         }
-
         dispatch(setQuestions(data.content.questions));
         setTitle(data.content.form_title);
       })
       .then(() => startConversation())
       .catch((error) => {
         console.log(error);
-
         setError(error.message);
-      }).finally(() => setLoading(false))
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const upHandler = ({ key, shiftKey }) => {
@@ -70,15 +64,15 @@ function App() {
 
   const _render = () => {
     if (!id) {
-      return <ErrorPage message="Form ID is not provided" />
+      return <ErrorPage message="Form ID is not provided" />;
     }
 
     if (loading) {
-      return <Loader />
+      return <Loader />;
     }
 
     if (error) {
-      return <ErrorPage message={error} />
+      return <ErrorPage message={error} />;
     }
 
     return (
@@ -87,16 +81,13 @@ function App() {
         <div className="conversational-form-inner">
           <ChatList />
           <CfInput />
+          <CfFooter />{" "}
         </div>
       </div>
     );
   };
 
-  return (
-    <>
-      {(_render())}
-    </>
-  );
+  return <>{_render()}</>;
 }
 
 export default App;
