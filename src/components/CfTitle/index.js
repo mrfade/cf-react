@@ -5,10 +5,10 @@ export const CfTitle = (props) => {
   return (
     <div
       style={{
-        height: "55px",
+        height: "60px",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+       // alignItems: "center",
         flexDirection: "column",
         background: "#0a1551",
         color: "white",
@@ -24,8 +24,9 @@ export const CfTitle = (props) => {
           overflow: "hidden",
           textOverflow: "clip",
           fontSize: "20px",
-          fontWeight: "bold",
-          textAlign: "center",
+         // fontWeight: "bold",
+          //textAlign: "center",
+          marginLeft: "1rem"
         }}
       >
         {title}
