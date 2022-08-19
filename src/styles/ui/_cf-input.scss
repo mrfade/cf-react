@@ -105,36 +105,36 @@ $introDelay: 0.4s;
 
 		&:hover {
 			&::-webkit-input-placeholder {
-				color: darken($cf-color-chat-response-default-text, 20%);
+				color: lighten($cf-color-chat-response-default-text, 35%);
 			}
 
 			&::-moz-input-placeholder {
-				color: darken($cf-color-chat-response-default-text, 20%);
+				color: lighten($cf-color-chat-response-default-text, 35%);
 			}
 
 			&:-moz-input-placeholder {
-				color: darken($cf-color-chat-response-default-text, 20%);
+				color: lighten($cf-color-chat-response-default-text, 35%);
 			}
 
 			&:-ms-input-placeholder {
-				color: darken($cf-color-chat-response-default-text, 20%);
+				color: lighten($cf-color-chat-response-default-text, 35%);
 			}
 		}
 
 		&::-webkit-input-placeholder {
-			color: currentColor;
+			color: lighten($cf-color-chat-response-default-text, 35%);;
 		}
 
 		&::-moz-input-placeholder {
-			color: currentColor;
+			color: lighten($cf-color-chat-response-default-text, 35%);;
 		}
 
 		&:-moz-input-placeholder {
-			color: currentColor;
+			color: lighten($cf-color-chat-response-default-text, 35%);;
 		}
 
 		&:-ms-input-placeholder {
-			color: currentColor;
+			color: lighten($cf-color-chat-response-default-text, 35%);;
 		}
 
 		transition: all $cf-anim-time/2.4 !important;

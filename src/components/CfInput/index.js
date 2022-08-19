@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames";
-import { setValue } from "../../stores/input";
+import input, { setValue } from "../../stores/input";
 
 import CfInfo from "../CfInfo";
 import CfInputControlElements from "../CfInputControlElements";
@@ -17,7 +17,13 @@ export default function CfInput() {
   const dispatch = useDispatch();
 
   const handleInputChange = (value) => {
-    dispatch(setValue(value));
+    if (type == "tel") { //
+      var x = value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+      let maskedValue =  !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+      dispatch(setValue(maskedValue));
+    }else {
+      dispatch(setValue(value));
+    }
   };
 
   useEffect(() => {
