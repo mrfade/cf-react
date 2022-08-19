@@ -23,7 +23,7 @@ export default function ChatList() {
                 <b className="thinking">
                   <span>.</span>
                   <span>.</span>
-                  <span>.</span>
+                  <span>.</span> {/* buraya ugra */}
                 </b>
               </p>
             </div>

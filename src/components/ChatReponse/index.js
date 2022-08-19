@@ -9,7 +9,7 @@ export default function ChatResponse({ owner, thumb, messages }) {
       <div className="thumb" style={{ backgroundImage: `url(${thumb})` }}><span></span></div>
       <div className="text">
         {messages && messages.map((message, index) => (
-          <p key={`${index}-${message}`} className='show thinking'>{message}</p>
+          <p key={`${index}-${message}`}  dangerouslySetInnerHTML={{ __html: message }} className='show thinking'></p>
         ))}
       </div>
     </div>
