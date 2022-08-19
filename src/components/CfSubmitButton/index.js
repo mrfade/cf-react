@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
 import { validateAndSubmit } from "../../stores/app";
 
-export default function CfSubmitButton() {
+export default function CfSubmitButton(props) {
+  const disabled = props.disabled;
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
@@ -9,7 +10,8 @@ export default function CfSubmitButton() {
   };
 
   return (
-    <div
+    <button
+      disabled={disabled}
       className="cf-submit-button cf-input-button"
       onClick={() => handleSubmit()}
     >
@@ -17,6 +19,6 @@ export default function CfSubmitButton() {
         <div className="cf-icon-progress"></div>
         <div className="cf-icon-attachment"></div>
       </div>
-    </div>
+    </button>
   );
 }

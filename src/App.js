@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams,useSearchParams } from "react-router-dom";
 
-import { start, setQuestions, _upHandler, setFormID } from "./stores/app";
+import { start, setQuestions, _upHandler, setFormID, setPrevMode } from "./stores/app";
 
 import ChatList from "./components/ChatList";
 import CfInput from "./components/CfInput";
@@ -20,10 +20,12 @@ function App() {
   const [error, setError] = useState("");
 
   const { id } = useParams();
+  let [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setFormID(id));
+    dispatch(setPrevMode(searchParams.get("prevMode")));
     fetch(`https://e-solak.jotform.dev/intern-api/conversational-form/${id}`)
       .then((res) => res.json())
       .then((data) => {
