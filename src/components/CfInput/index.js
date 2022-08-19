@@ -51,7 +51,7 @@ export default function CfInput() {
           style={{ height: "60px" }}
         ></input>
 
-        <CfSubmitButton />
+        <CfSubmitButton disabled={disabled} />
        </div>
     </div>
   );

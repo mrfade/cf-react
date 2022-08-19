@@ -12,13 +12,17 @@ import {
   setFilterKey,
   reset,
 } from "./input";
-import { setChecbokSelect, setOptions, setValue as setControlValue } from "./inputControl";
+import {
+  setChecbokSelect,
+  setOptions,
+  setValue as setControlValue,
+} from "./inputControl";
 import { addAnswer, getFormData } from "./answer";
 import { email, maxLength, minLength, required } from "../validations";
 
 const robotImage = require("../assets/img/podo_1.png");
 const userImage = require("../assets/img/podo_2.png");
- 
+
 const VALIDATIONS = {
   email,
   required,
@@ -34,6 +38,7 @@ export const appSlice = createSlice({
     questions: [],
     currentQuestion: -1,
     formID: "",
+    prevMode: false,
   },
   reducers: {
     setStatus: (state, action) => {
@@ -84,12 +89,21 @@ export const appSlice = createSlice({
     },
     setFormID: (state, action) => {
       state.formID = action.payload;
-    }
+    },
+    setPrevMode: (state, action) => {
+      state.prevMode = action.payload;
+    },
   },
 });
 
-export const { setStatus, setRobotDelay, setQuestions, setCurrentQuestion, setFormID } =
-  appSlice.actions;
+export const {
+  setStatus,
+  setRobotDelay,
+  setQuestions,
+  setCurrentQuestion,
+  setFormID,
+  setPrevMode,
+} = appSlice.actions;
 
 export const _upHandler = () => (dispatch, getState) => {
   const { value: inputControlValue } = getState().inputControl;
@@ -100,7 +114,7 @@ export const _upHandler = () => (dispatch, getState) => {
   if (type == "checkbox" && value.length > 0) {
     dispatch(setChecbokSelect(value));
   } else {
-  dispatch(validateAndSubmit());
+    dispatch(validateAndSubmit());
   }
 };
 
@@ -170,38 +184,42 @@ export const finished = () => (dispatch, getState) => {
       message: "Thank you for your time!",
     })
   );
-  const { formID } = getState().app;
+  const { formID, prevMode } = getState().app;
   const formData = getFormData(getState());
-  fetch(
-    "https://e-solak.jotform.dev/intern-api/conversational-form/" +
-      formID,
-    {
-      method: "POST",
-      body: formData,
-    }
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Formdata, json:", data);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-    .finally(() => {
-      console.log("Formdata, finally");
-    });
+  if (!prevMode) {
+    fetch(
+      "https://e-solak.jotform.dev/intern-api/conversational-form/" + formID,
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Formdata, json:", data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        console.log("Formdata, finally");
+      });
+  }
   console.log("formData", Object.fromEntries(formData));
 };
 
 export const validateAndSubmit = () => (dispatch, getState) => {
   const { robotDelay } = getState().app;
-  const { type, value: inputValue, name, validation } = getState().input;
+  const { type, value: inputValue, name, validation, disabled } = getState().input;
   const { value: inputControlValue } = getState().inputControl;
   let filteredValue;
   if (type === "checkbox" || type === "radio") {
     filteredValue = inputControlValue.trim();
   } else {
     filteredValue = inputValue.trim();
+  }
+  if (disabled) { // if disabled, do not submit
+    return;
   }
 
   let valid = true;
