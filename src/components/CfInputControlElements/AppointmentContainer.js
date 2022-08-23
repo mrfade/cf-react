@@ -174,8 +174,9 @@ export const Options = (props) => {
       ) : (
         Object.keys(data).map((option, i) => {
           return (
-            <div
-              className="cf-radio-button cf-button animate-in "
+            <button
+              disabled={data[option] ? false : true}
+              className={"cf-radio-button cf-button animate-in " + (data[option] ? "" : "disabled")}
               onClick={(e) => {
                 e.preventDefault();
                 handleChange(option);
@@ -186,7 +187,7 @@ export const Options = (props) => {
                 <div className="cf-radio"></div>
                 <span>{option}</span>
               </div>
-            </div>
+            </button>
           );
         })
       )}
