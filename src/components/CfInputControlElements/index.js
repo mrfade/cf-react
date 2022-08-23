@@ -6,6 +6,7 @@ import * as inputControl from "../../stores/inputControl";
 
 import RadioContainer from "./RadioContainer";
 import CheckBoxContainer from "./CheckBoxContainer";
+import AppointmentContainer from "./AppointmentContainer";
 
 export default function CfInputControlElements(props) {
   const { type, value } = props;
@@ -27,9 +28,7 @@ export default function CfInputControlElements(props) {
       <div className="cf-list-button prev"></div>
       <div className="cf-list-button next"></div>
       {type === "radio" ? (
-        <RadioContainer
-          handleInputChange={handleInputChange}
-        />
+        <RadioContainer handleInputChange={handleInputChange} />
       ) : null}
       {type === "checkbox" ? (
         <CheckBoxContainer
@@ -38,6 +37,7 @@ export default function CfInputControlElements(props) {
           value={value}
         />
       ) : null}
+      {type === "appointment" ? <AppointmentContainer handleInputChange={handleInputChange} /> : null}
     </div>
   );
 }
