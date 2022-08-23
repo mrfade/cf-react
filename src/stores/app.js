@@ -39,6 +39,7 @@ export const appSlice = createSlice({
     currentQuestion: -1,
     formID: "",
     prevMode: false,
+    successMessage: [],
   },
   reducers: {
     setStatus: (state, action) => {
@@ -93,6 +94,9 @@ export const appSlice = createSlice({
     setPrevMode: (state, action) => {
       state.prevMode = action.payload;
     },
+    setSuccessMessage: (state, action) => {
+      state.successMessage = action.payload;
+    },
   },
 });
 
@@ -103,6 +107,7 @@ export const {
   setCurrentQuestion,
   setFormID,
   setPrevMode,
+  setSuccessMessage,
 } = appSlice.actions;
 
 export const _upHandler = () => (dispatch, getState) => {
@@ -177,14 +182,7 @@ export const finished = () => (dispatch, getState) => {
   dispatch(setCurrentQuestion(-1));
   dispatch(reset());
 
-  dispatch(
-    addMessage({
-      owner: "robot",
-      thumb: robotImage,
-      message: "Thank you for your time!",
-    })
-  );
-  const { formID, prevMode } = getState().app;
+  const { formID, prevMode, successMessage, robotDelay } = getState().app;
   const formData = getFormData(getState());
   if (!prevMode) {
     fetch(
@@ -202,7 +200,17 @@ export const finished = () => (dispatch, getState) => {
         console.log(error);
       })
       .finally(() => {
-        console.log("Formdata, finally");
+        const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
+        successMessage.forEach(async (message, i) => {
+          await sleep(i * (robotDelay + 337.5));
+          dispatch(
+            addMessage({
+              owner: "robot",
+              thumb: robotImage,
+              message,
+            })
+          ); 
+        });
       });
   }
   console.log("formData", Object.fromEntries(formData));
@@ -210,7 +218,13 @@ export const finished = () => (dispatch, getState) => {
 
 export const validateAndSubmit = () => (dispatch, getState) => {
   const { robotDelay } = getState().app;
-  const { type, value: inputValue, name, validation, disabled } = getState().input;
+  const {
+    type,
+    value: inputValue,
+    name,
+    validation,
+    disabled,
+  } = getState().input;
   const { value: inputControlValue } = getState().inputControl;
   let filteredValue;
   if (type === "checkbox" || type === "radio" || type === "appointment") {
@@ -218,7 +232,8 @@ export const validateAndSubmit = () => (dispatch, getState) => {
   } else {
     filteredValue = inputValue.trim();
   }
-  if (disabled) { // if disabled, do not submit
+  if (disabled) {
+    // if disabled, do not submit
     return;
   }
 

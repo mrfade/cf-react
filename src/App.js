@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams,useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
-import { start, setQuestions, _upHandler, setFormID, setPrevMode } from "./stores/app";
+import {
+  start,
+  setQuestions,
+  _upHandler,
+  setFormID,
+  setPrevMode,
+  setSuccessMessage,
+} from "./stores/app";
 
 import ChatList from "./components/ChatList";
 import CfInput from "./components/CfInput";
@@ -37,6 +44,7 @@ function App() {
         }
         dispatch(setQuestions(data.content.questions));
         setTitle(data.content.form_title);
+        dispatch(setSuccessMessage(data.content.success_messages));
       })
       .then(() => startConversation())
       .catch((error) => {
