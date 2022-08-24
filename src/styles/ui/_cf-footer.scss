@@ -1,0 +1,20 @@
+.cf-footer {
+  margin: 0px -15px;
+  color: rgba(10, 21, 81, 0.55);
+  background: rgba(244, 244, 250, 0.92);
+  font-size: 12px;
+  padding: 3px;
+  width: calc(100% + 30px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  a {
+    line-height: 1;
+
+    img {
+      height: 12px;
+    }
+  }
+}
