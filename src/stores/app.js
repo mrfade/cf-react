@@ -302,11 +302,13 @@ export const validateAndSubmit = () => (dispatch, getState) => {
 
   // Check input value, ig it is empty and not required, send a robot message
   if ((filteredValue ?? '').trim() === '' && (validation !== 'required' || !validation.includes('required'))) {
-    addMessage({
-      owner: "robot",
-      thumb: robotImage,
-      message: 'OK! It was not required anyway.',
-    });
+    dispatch(
+      addMessage({
+        owner: "robot",
+        thumb: robotImage,
+        message: 'OK! It was not required anyway.',
+      })
+    );
   } else {
     dispatch(
       addMessage({
