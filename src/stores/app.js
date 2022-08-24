@@ -295,10 +295,19 @@ export const validateAndSubmit = () => (dispatch, getState) => {
     return;
   }
 
-  if (valid) {
-    dispatch(setValue(""));
-    dispatch(setControlValue(""));
-    dispatch(setDisabled(true));
+  // Input is valid we can save the answer
+  dispatch(setValue(""));
+  dispatch(setControlValue(""));
+  dispatch(setDisabled(true));
+
+  // Check input value, ig it is empty and not required, send a robot message
+  if ((filteredValue ?? '').trim() === '' && (validation !== 'required' || !validation.includes('required'))) {
+    addMessage({
+      owner: "robot",
+      thumb: robotImage,
+      message: 'OK! It was not required anyway.',
+    });
+  } else {
     dispatch(
       addMessage({
         owner: "user",
@@ -306,30 +315,24 @@ export const validateAndSubmit = () => (dispatch, getState) => {
         message: filteredValue,
       })
     );
-
-    dispatch(
-      addAnswer({
-        name: name,
-        value: filteredValue,
-      })
-    );
-
-    setTimeout(() => {
-      dispatch(setRobotThinking(true));
-    }, robotDelay);
-
-    setTimeout(() => {
-      // dispatch(addMessage({
-      //   owner: 'robot',
-      //   thumb: robotImage,
-      //   message: 'I received your message! ' + value,
-      // }));
-
-      dispatch(setRobotThinking(false));
-
-      nextQuestion()(dispatch, getState);
-    }, robotDelay * 2);
   }
+
+  // Save answer
+  dispatch(
+    addAnswer({
+      name: name,
+      value: filteredValue,
+    })
+  );
+
+  setTimeout(() => {
+    dispatch(setRobotThinking(true));
+  }, robotDelay);
+
+  setTimeout(() => {
+    dispatch(setRobotThinking(false));
+    nextQuestion()(dispatch, getState);
+  }, robotDelay * 2);
 };
 
 export default appSlice.reducer;
