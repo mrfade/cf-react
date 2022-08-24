@@ -193,9 +193,6 @@ export const finished = () => (dispatch, getState) => {
       }
     )
       .then((response) => response.json())
-      .then((data) => {
-        console.log("Formdata, json:", data);
-      })
       .catch((error) => {
         console.log(error);
       })
@@ -213,7 +210,6 @@ export const finished = () => (dispatch, getState) => {
         });
       });
   }
-  console.log("formData", Object.fromEntries(formData));
 };
 
 export const validateAndSubmit = () => (dispatch, getState) => {

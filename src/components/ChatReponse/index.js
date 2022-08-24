@@ -14,7 +14,6 @@ export default function ChatResponse({ owner, thumb, messages }) {
     setVal(e.target.innerHTML);
   };
   const onBlur = (e) => {
-    console.log(e.target.id);
     if (val !== e.target.innerHTML) {
       const html = e.target.innerHTML;
       setVal({ id: e.target.id, answer: html });

@@ -48,7 +48,6 @@ function App() {
       })
       .then(() => startConversation())
       .catch((error) => {
-        console.log(error);
         setError(error.message);
       })
       .finally(() => setLoading(false));
