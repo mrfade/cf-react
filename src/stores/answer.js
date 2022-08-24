@@ -11,9 +11,13 @@ export const answerSlice = createSlice({
     },
 
     editAnswer: (state, action) => {
-      state.answers = state.answers.map(answer => {
-        if (answer.id === action.payload.id) {
-          return action.payload;
+      state.answers = state.answers.map((answer, i)=> {
+       // console.log("payload ", action.payload)
+        if (i == action.payload.id) {
+          return {
+            ...answer,
+            value: action.payload.answer
+          };
         }
 
         return answer;
@@ -22,11 +26,11 @@ export const answerSlice = createSlice({
   }
 });
 
-export const { addAnswer } = answerSlice.actions;
+export const { addAnswer, editAnswer } = answerSlice.actions;
 
 export const getFormData = state => {
   const { answers } = state.answer;
-
+console.log(answers)
   const formData = new FormData();
   answers.forEach(answer => {
     formData.append(answer.name, answer.value);
