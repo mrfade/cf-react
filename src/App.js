@@ -20,6 +20,8 @@ import { ErrorPage } from "./components/ErrorPage";
 
 import "./styles/conversational-form.scss";
 
+import testData from "./assets/data/test-data.json"
+
 function App() {
   const [questionsData, setQuestionsData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,6 +33,17 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (id === 'test-form') {
+      dispatch(setFormID(id));
+      dispatch(setPrevMode('true'));
+      setTitle(testData.form_title);
+      dispatch(setQuestions(testData.questions))
+      dispatch(setSuccessMessage(testData.success_messages));
+      startConversation();
+      setLoading(false);
+      return
+    }
+
     dispatch(setFormID(id));
     dispatch(setPrevMode(searchParams.get("prevMode")));
     fetch(`https://e-solak.jotform.dev/intern-api/conversational-form/${id}`)

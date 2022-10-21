@@ -1,0 +1,253 @@
+{
+  "form_title": "Test Form",
+  "questions": [
+    {
+      "type": "text",
+      "name": "first_name",
+      "label": "Please tell me your <b>First Name</b>",
+      "validation": [
+        "required",
+        "minLength:3"
+      ]
+    },
+    {
+      "type": "text",
+      "name": "last_name",
+      "label": "Please tell me your <b>Last Name</b>",
+      "validation": [
+        "required",
+        "minLength:3"
+      ]
+    },
+    {
+      "type": "email",
+      "name": "email",
+      "label": "Please tell me your <b>E-mail</b>",
+      "validation": [
+        "required",
+        "email"
+      ]
+    },
+    {
+      "type": "tel",
+      "name": "phone",
+      "label": "Please tell me your <b>Phone Number</b>",
+      "validation": [
+        "required"
+      ]
+    },
+    {
+      "type": "checkbox",
+      "name": "services",
+      "label": "What do you want to have?",
+      "options": [
+        "Dentures",
+        "Dental Inplant",
+        "Orthodontics",
+        "Dental Surgery",
+        "Oral Hygenie"
+      ],
+      "validation": [
+        "required"
+      ]
+    },
+    {
+      "type": "appointment",
+      "name": "appointment",
+      "label": "Appointment",
+      "fieldOptions": {
+        "availableTimeSlots": {
+          "November": {
+            "Week 1": {
+              "2022-11-01": {
+                "9:00 AM": true,
+                "10:00 AM": true,
+                "11:00 AM": false,
+                "2:00 PM": true,
+                "3:00 PM": false,
+                "4:00 PM": true
+              },
+              "2022-11-02": {
+                "9:00 AM": true,
+                "10:00 AM": false,
+                "11:00 AM": false,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": false
+              },
+              "2022-11-03": {
+                "9:00 AM": false,
+                "10:00 AM": true,
+                "11:00 AM": true,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": true
+              },
+              "2022-11-04": {
+                "9:00 AM": false,
+                "10:00 AM": true,
+                "11:00 AM": false,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": false
+              }
+            },
+            "Week 2": {
+              "2022-11-07": {
+                "9:00 AM": true,
+                "10:00 AM": true,
+                "11:00 AM": true,
+                "2:00 PM": true,
+                "3:00 PM": false,
+                "4:00 PM": true
+              },
+              "2022-11-08": {
+                "9:00 AM": false,
+                "10:00 AM": true,
+                "11:00 AM": true,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": false
+              },
+              "2022-11-09": {
+                "9:00 AM": true,
+                "10:00 AM": true,
+                "11:00 AM": true,
+                "2:00 PM": false,
+                "3:00 PM": true,
+                "4:00 PM": true
+              },
+              "2022-11-10": {
+                "9:00 AM": true,
+                "10:00 AM": false,
+                "11:00 AM": false,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": true
+              },
+              "2022-11-11": {
+                "9:00 AM": true,
+                "10:00 AM": true,
+                "11:00 AM": true,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": true
+              }
+            },
+            "Week 3": {
+              "2022-11-14": {
+                "9:00 AM": true,
+                "10:00 AM": true,
+                "11:00 AM": true,
+                "2:00 PM": false,
+                "3:00 PM": true,
+                "4:00 PM": false
+              },
+              "2022-11-15": {
+                "9:00 AM": true,
+                "10:00 AM": true,
+                "11:00 AM": false,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": true
+              },
+              "2022-11-16": {
+                "9:00 AM": true,
+                "10:00 AM": false,
+                "11:00 AM": true,
+                "2:00 PM": true,
+                "3:00 PM": false,
+                "4:00 PM": true
+              },
+              "2022-11-17": {
+                "9:00 AM": true,
+                "10:00 AM": false,
+                "11:00 AM": true,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": true
+              },
+              "2022-11-18": {
+                "9:00 AM": true,
+                "10:00 AM": true,
+                "11:00 AM": false,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": false
+              }
+            },
+            "Week 4": {
+              "2022-11-21": {
+                "9:00 AM": true,
+                "10:00 AM": false,
+                "11:00 AM": true,
+                "2:00 PM": false,
+                "3:00 PM": true,
+                "4:00 PM": true
+              },
+              "2022-11-22": {
+                "9:00 AM": false,
+                "10:00 AM": false,
+                "11:00 AM": false,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": true
+              },
+              "2022-11-23": {
+                "9:00 AM": true,
+                "10:00 AM": true,
+                "11:00 AM": false,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": true
+              },
+              "2022-11-24": {
+                "9:00 AM": true,
+                "10:00 AM": true,
+                "11:00 AM": false,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": true
+              },
+              "2022-11-25": {
+                "9:00 AM": false,
+                "10:00 AM": true,
+                "11:00 AM": true,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": false
+              },
+              "2022-11-28": {
+                "9:00 AM": true,
+                "10:00 AM": false,
+                "11:00 AM": true,
+                "2:00 PM": true,
+                "3:00 PM": false,
+                "4:00 PM": true
+              },
+              "2022-11-29": {
+                "9:00 AM": true,
+                "10:00 AM": false,
+                "11:00 AM": false,
+                "2:00 PM": true,
+                "3:00 PM": true,
+                "4:00 PM": true
+              },
+              "2022-11-30": {
+                "9:00 AM": true,
+                "10:00 AM": true,
+                "11:00 AM": true,
+                "2:00 PM": true,
+                "3:00 PM": false,
+                "4:00 PM": false
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "success_messages": [
+    "Thanks for your time!"
+  ]
+}
