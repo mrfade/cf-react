@@ -182,6 +182,20 @@ export const finished = () => (dispatch, getState) => {
   dispatch(setCurrentQuestion(-1));
   dispatch(reset());
 
+  const runSuccessMessages = () => {
+    const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
+    successMessage.forEach(async (message, i) => {
+      await sleep(i * (robotDelay + 337.5));
+      dispatch(
+        addMessage({
+          owner: "robot",
+          thumb: robotImage,
+          message,
+        })
+      ); 
+    });
+  };
+
   const { formID, prevMode, successMessage, robotDelay } = getState().app;
   const formData = getFormData(getState());
   if (!prevMode) {
@@ -196,19 +210,9 @@ export const finished = () => (dispatch, getState) => {
       .catch((error) => {
         console.log(error);
       })
-      .finally(() => {
-        const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
-        successMessage.forEach(async (message, i) => {
-          await sleep(i * (robotDelay + 337.5));
-          dispatch(
-            addMessage({
-              owner: "robot",
-              thumb: robotImage,
-              message,
-            })
-          ); 
-        });
-      });
+      .finally(runSuccessMessages);
+  } else {
+    runSuccessMessages();
   }
 };
 
